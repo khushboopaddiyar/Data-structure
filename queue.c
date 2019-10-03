@@ -1,78 +1,81 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define N 10
-int a[N] , f=-1,r=-1;
-void enqueue();
-void dequeue();
-void traversal();
+typedef struct queue
+{
+    int info;
+    struct queue *next;
+}queue;
+void enqueue(queue **);
+void dequeue(queue **);
+void display(queue **);
 int main()
 {
-int c;
-  while(1)
-  {
-   printf("\nEnter ur choices : \n 1.Insert \n 2.Delete \n 3.Traversal \n 4.exit");
-   scanf("%d",&c);
-     switch(c)
-     {
-      case 1: enqueue();
-               break;
-      case 2: dequeue();
-               break;
-       case 3:traversal();
-                break;
-       case 4:exit(0); 
-     }
-  }
+    int c;
+    queue *front=NULL;
+    while(1)
+    {
+        printf("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\nEnter a Choice : ");
+        scanf("%d",&c);
+        switch(c)
+        {
+        case 1:
+            enqueue(&front);
+            break;
+        case 2:
+            dequeue(&front);
+            break;
+        case 3:
+            display(&front);
+            break;
+        case 4:
+            exit(0);
+        default:
+            printf("\nEnter a Valid Choice");
+        }
+    }
+    return 0;
 }
-  
-void enqueue()
+void enqueue(queue **f)
 {
- if(r==N-1)
-  {
-   printf("\nOverflow");
-   f++;
-    r++;
-  }
-  else{
-      int e;
-      printf("\nenter a no");
-      scanf("%d",&e);
-      a[r]=e;
-      r++;
-      }
-
+    int element;
+    queue *newnode;
+    newnode = (queue *)malloc(sizeof(queue));
+    printf("Enter element to be Inserted : ");
+    scanf("%d",&element);
+    newnode->info=element;
+    newnode->next=NULL;
+    if(*f==NULL)
+    {
+        *f=newnode;
+    }
+    else
+    {
+        queue *temp;
+        for(temp=*f;temp->next!=NULL;temp=temp->next);
+        temp->next=newnode;
+    }
 }
-void dequeue()
+void dequeue(queue **f)
 {
-  if(f==-1&& r==-1)
-  {
-   printf("\nunderflow");
- 
-  }
-  else
-  {
-   printf("\nThe deleted element is %d",a[f]);
-   f++;
-  }
+    if(*f==NULL)
+    {
+        printf("\nQueue is Empty\n");
+    }
+    else
+    {
+        queue *temp;
+        temp=*f;
+        *f=(*f)->next;
+        printf("\nDeleted : %d",temp->info);
+        free(temp);
+    }
 }
- void traversal()
- {
-  if(r==-1 && f==-1)
- {
-  printf("\nunderflow");
- }
- else
- {
- int i;
-  for(i=f;i<r ;i++)
-  {
-  printf("\n The elements are %d",a[i]);
-  }
- }
-
+void display(queue **f)
+{
+    queue *temp;
+    printf("\nQueue Contains : \n");
+    for(temp=*f;temp!=NULL;temp=temp->next)
+    {
+        printf("%d ",temp->info);
+    }
 }
-
-
-
-
-
