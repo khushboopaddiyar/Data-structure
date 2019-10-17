@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
+#include<math.h>
 #define N 5
 int a[5],i=-1;
 
