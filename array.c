@@ -14,11 +14,11 @@ void displaybeg();
 void displaylast();
 
 
-main()
+int main()
 {
 	int c,ch;
 	while(1){
-		printf("\nEnter Your Choice\n1 for Insertion\n2 for Deletion\n3 for Display\n");scanf("%d",&c);
+		printf("\nEnter Your Choice\n1 for Insertion\n2 for Deletion\n3 for Display\n4 for Exit\n");scanf("%d",&c);
 		switch(c)
 		{
 			case 1:
@@ -37,7 +37,7 @@ main()
 				break;
 				
 			case 2:
-				printf("Enter a Choice\n1 to Delete at beginning \n2 to Delete an Element\n3 to Delete at End\n");scanf("%d",&ch);
+				printf("Enter a Choice\n1 to Delete at Beginning \n2 to Delete an Element at Middle\n3 to Delete at End\n");scanf("%d",&ch);
 				switch(ch){
 					case 1:
 						deletebeg();
@@ -52,7 +52,7 @@ main()
 				break;
 				
 			case 3:
-				printf("\nEnter a Choice\n1 to Display from beginning\n2 to Display from Last\n");scanf("%d",&ch);
+				printf("\nEnter a Choice\n1 to Display from Beginning\n2 to Display from Last\n");scanf("%d",&ch);
 				switch(ch){
 					case 1:
 						displaybeg();
@@ -67,9 +67,10 @@ main()
 				exit(0);
 				
 			default :
-				printf("\n Enter A Valid Choice");
+				printf("\n Enter A Valid Choice:\n");
 		}
 	}
+	return 0;
 }
 
 
@@ -133,7 +134,7 @@ void deletemid(){
 	else
 	{
 		int e,j,p;
-		printf("\Enter Element to be Deleted\n");
+		printf("\nEnter Element to be Deleted\n");
 		scanf("%d",&e);
 		for(j=0;j<=i;j++){
 			if(a[j]==e)
