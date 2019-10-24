@@ -78,4 +78,5 @@ void display(queue **f)
     {
         printf("%d ",temp->info);
     }
+    printf("done!");
 }
